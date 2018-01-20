@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/wow.min.js"></script>
+<script>
+$(window).load(function(){
+            setTimeout(function(){
+                $('#preloader').velocity({
+                    opacity : 0.1,
+                    translateY: "-80px"
+                }, {
+                    duration: 400,
+                    complete: function(){
+                    $('#hola').velocity({
+                    translateY : "-100%"
+                }, {
+                    duration: 1000,
+                    easing: [0.7,0,0.3,1],
+                    complete: function(){
+                        $('.home').addClass('animate-border divide');
+                    }
+                })
+                    }
+                })
+            },1000)
+        })
+</script>
+</head>
+<body>
+  <!-- Page preloader -->
+        <div id="hola">
+        <div id="preloader">
+        <span></span>
+        <span></span>
+          </div>
+            </div>
+
+        <!-- Start content -->
+        <div class="page-wrap">
+            <div class="home">
+            <div class="text-wrap">
+                <h1>So the tale continues</h1>
+                <p>
+                Though, consumed with the hot fire of his purpose, Ahab in all his thoughts and actions ever had in view the ultimate capture of Moby Dick; though he seemed ready to sacrifice all mortal interests to that one passion; nevertheless it may have been that he was by nature and long habituation far too wedded to a fiery whaleman's ways, altogether to abandon the collateral prosecution of the voyage. Or at least if this were otherwise, there were not wanting other motives much more influential with him. It would be refining too much, perhaps, even considering his monomania, to hint that his vindictiveness towards the White Whale might have possibly extended itself in some degree to all sperm whales, and that the more monsters he slew by so much the more he multiplied the chances that each subsequently encountered whale would prove to be the hated one he hunted.
+                </p>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+</html>

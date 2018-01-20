@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 0 ] ; then
+	echo "Usage: " $(basename $0)
+	echo
+	echo "The following shell variables can be set in ~/.seeddms-upload.conf"
+	echo "  baseurl: url of restapi service"
+	echo "  username: name of user to be used"
+	echo "  password: password of user to be used. If not set, it will be asked."
+	echo "  targetfolder: id of folder where file is uploaded"
+	exit 0
+fi
+
+if [ -f ~/.seeddms-upload.conf ] ; then
+	. ~/.seeddms-upload.conf
+fi
+
+if [ -z "$baseurl" ] ; then
+	echo "Missing base url"
+	exit 1
+fi
+
+if [ -z "$username" ] ; then
+	echo "Missing username"
+	exit 1
+fi
+
+if [ -z "$targetfolder" ] ; then
+	echo "Missing target folder"
+	exit 1
+fi
+
+if [ -z "$password" ] ; then
+	read -s -p "Password: " password
+	echo
+fi
+
+cookiefile=/tmp/cookies.txt
+trap 'rm -f $cookiefile' EXIT
+
+message=$(cat)
+
+subject="no-subject"
+
+origfilename=$(php -r "echo urlencode($subject);")
+
+# First login
+data=$(curl -s -c $cookiefile --data "user=$username&pass=$password" $baseurl/login)
+success=$(echo "$data" | jq .success)
+if [ "$success" = "false" ] ; then
+	echo "Could not login! Check your credentials";
+	echo $data | jq
+	exit 1;
+fi
+
+# Upload message
+data=$(echo "${message}" | curl -s -b $cookiefile -T - "$baseurl/folder/$targetfolder/document?name=$origfilename&origfilename=$origfilename")
+success=$(echo "$data" | jq .success)
+if [ "$success" = "false" ] ; then
+	echo $data | jq
+	exit 1;
+fi
+
+echo $data | jq

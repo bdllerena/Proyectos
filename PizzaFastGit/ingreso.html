@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    var x = document.getElementById("demo");
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    function showPosition(position) {
+        var mapProp= {
+
+            center:new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+          /*  */
+            zoom:16,
+        };
+        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        document.getElementById('latitude').value = position.coords.latitude;
+        document.getElementById('longitude').value = position.coords.longitude;
+    }
+  });
+  </script>
+</head>
+<body>
+  <div class="container">
+<!--  <p id="demo"></p>-->
+<form>
+  <div class="form-group">
+   <label for="comment">Nombre:</label>
+   <input class="form-control" type="text" name="nombre" value="">
+   <!--<textarea class="form-control" rows="5" id="comment"></textarea>-->
+    </div>
+    <div class="form-group">
+     <label for="comment">Apellido:</label>
+     <input class="form-control" type="text" name="apellido" value="">
+     <!--<textarea class="form-control" rows="5" id="comment"></textarea>-->
+      </div>
+    <div class="form-group">
+    <label for="comment">Cedula:</label>
+    <input class="form-control" type="text" name="apellido" value="">
+       <!--<textarea class="form-control" rows="5" id="comment"></textarea>-->
+    </div>
+    <div class="form-group">
+    <label for="comment">Nickname:</label>
+    <input class="form-control" type="text" name="apellido" value="">
+         <!--<textarea class="form-control" rows="5" id="comment"></textarea>-->
+    </div>
+    <div class="form-group">
+    <label for="comment">Clave:</label>
+    <input class="form-control" type="password" name="apellido" value="">
+           <!--<textarea class="form-control" rows="5" id="comment"></textarea>-->
+    </div>
+    <input type="hidden" id="latitude" value="0">
+    <input type="hidden" id="longitude" value="0">
+    <input type="submit" value="Submit">
+  <!--
+  <div class="form-group">
+  Nombre:
+  <input type="text" name="nombre" value="">
+</div>
+  <p></p>
+  Apellido:
+  <input type="text" name="apellido" value="">
+  <p></p>
+  Cedula:
+  <input type="text" name="cedula" value="">
+  <p></p>
+  Nickname:
+  <input type="text" name="nickname" value="">
+  <p></p>
+  clave:
+  <input type="password" name="clave" value="">
+  <input type="hidden" id="latitude" value="0">
+  <input type="hidden" id="longitude" value="0">
+  <p></p>
+  <input type="submit" value="Submit">
+-->
+</form>
+</div>
+<div id="googleMap" style="width:100%;height:400px;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArR-ChYu0tH_Be17SbzhiUMb6dPU0FTLc&callback=showPosition"></script>
+</body>
+</html>

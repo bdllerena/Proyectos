@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MissionPetroleum | Filtros</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="jquery.searchable.js"></script>
+	<script src="basic.js"></script>
+	<script>
+		$(document).ready(function(){
+		   $.ajax({
+				url:'gettable.php',
+				type:'GET', 
+			   success:function(data)
+			   {
+					  $("#divs").html(data);
+				(function ($) {
+				$.fn.page = function (PageSize) {
+					$(this).addClass("page-table")
+					var tableId = $(this).attr("id");
+					
+					//if id is not defined for table. Do Nothing.
+					if (typeof tableId == 'undefined') {
+						return this;
+					};
+
+					//Check for controls for this table and remove
+					$('.pagination[for="' + tableId + '"]').remove();
+
+					//Check for valid variable for pageSize if not set to default of 10
+					if (typeof PageSize == 'number') {
+						PageSize = parseInt(PageSize);
+					} else if (typeof PageSize == 'string') {
+						if ($.isNumeric(PageSize) == true) {
+							PageSize = parseInt(PageSize);
+						} else {
+							PageSize = 10;
+						}
+					} else {
+						PageSize = 10;
+					}
+
+					//Add pagination <ul> to hold controls
+					$(this).after('<ul class="pagination" for="' + tableId + '"></ul>');
+
+					//Add a pager control for each page
+					var currpage = 1;
+					var item = 1;
+					$(this).find('tr:has(td)').each(function () {
+
+						$(this).attr('data-page', currpage);
+
+						if ((item % PageSize) == 0) {
+							currpage = currpage + 1;
+							$('.pagination[for="' + tableId + '"]').append('<li><a href="#" data-page="' + currpage + '" for="' + tableId + '">' + currpage + '</a></li>')
+						} else if (item == 1) {
+							$('.pagination[for="' + tableId + '"]').append('<li><a href="#" class="active" data-page="' + currpage + '" for="' + tableId + '">' + currpage + '</a></li>')
+						}
+						item = item + 1;
+					});
+
+					//load 1st page
+					pageNumber(1, tableId);
+					$(this).next('.pagination[for="' + tableId + '"]').find('a').on('click', function (e) {
+						e.preventDefault();
+						pageNumber($(this).attr('data-page'), this);
+					});
+					return this;
+				}
+
+				// Private function page change
+				function pageNumber(iPage, element) {
+					if (typeof element == 'string') {
+						var target = element;
+					} else {
+						var target = $(element).attr("for");
+					}
+
+
+					if (typeof target == 'undefined') {
+						$('.page-table tr:has(td)').hide();
+						$('.page-table tr[data-page="' + iPage + '"]').show();
+					} else {
+						$('#' + target + ' tr:has(td)').hide();
+						$('#' + target + ' tr[data-page="' + iPage + '"]').show();
+					}
+				};
+
+			})(jQuery);
+
+			//End of plugin Beginning of Initialization
+
+			//if no page size is passed default is 10. Below we are setting page size to 20
+			$('#table').page(15);
+
+			//Changes page size from select value
+			$('select[for="table"]').on('change', function () {
+				$('#table').page($(this).val());
+			});
+			jQuery(function(){
+					 /*jQuery('#showall').click(function(){
+						   jQuery('.targetDiv').show();
+					});*/
+					jQuery('.showSingle').click(function(){
+							if ($(this).is(":checked")) {
+								//jQuery('.targetDiv').hide();
+								jQuery('#div'+$(this).attr('target')).show();
+							}            
+							else
+							{
+								//jQuery('.targetDiv').hide();
+								jQuery('#div'+$(this).attr('target')).hide();
+								//jQuery('#div'+$(this).attr('target')).show();
+							}
+					});
+			});
+			$(function () {
+				$( '#table' ).searchable({
+					striped: true,
+					oddRow: { 'background-color': '#f5f5f5' },
+					evenRow: { 'background-color': '#fff' },
+					searchType: 'fuzzy'
+				});
+				
+				$( '#searchable-container' ).searchable({
+					searchField: '#container-search',
+					selector: '.row',
+					childSelector: '.col-xs-4',
+					show: function( elem ) {
+						elem.slideDown(100);
+					},
+					hide: function( elem ) {
+						elem.slideUp( 100 );
+					}
+				})
+			});
+			$(document).ready(function () {
+
+				$('.star').on('click', function () {
+				  $(this).toggleClass('star-checked');
+				});
+
+				$('.ckbox label').on('click', function () {
+				  $(this).parents('tr').toggleClass('selected');
+				});
+
+				$('.btn-filter').on('click', function () {
+				  var $target = $(this).data('target');
+				  if ($target != 'all') {
+					$('.table tr').css('display', 'none');
+					$('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+				  } else {
+					$('.table tr').css('display', 'none').fadeIn('slow');
+				  }
+				});
+
+			 });
+				}
+			});
+		});
+		</script>
+</head>
+<body>
+    <div id="particles-js">
+        <div class="btext">
+		<img src="logo.png" >
+			<section class="content">
+			
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="pull-left nav">
+							 <div class="row">
+								<div class="col-lg-13 col-lg-offset-1">
+								<input type="search" id="search" value="" class="form-control" placeholder="Buscar...">
+								</div>
+							</div>
+						</div>
+						<div class="pull-right nav">
+							<div class="btn-group">
+								<button type="button" class="btn btn-success btn-filter" data-target="Entregado">Entregado</button>
+								<button type="button" class="btn btn-warning btn-filter" data-target="Multa Sin Cronograma">MultaSinCronograma</button>
+								<button type="button" class="btn btn-danger btn-filter" data-target="Sin Multas">SinMultas</button>
+								<button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
+							</div>
+						</div>
+						<div class="table-container">
+						<table class="table table-filter" id="table">
+						<tbody id="divs">
+						</tbody>
+						</table>
+						</div>
+						<!--<div class="table-container">
+						<table class="table table-filter" id="table">
+						</table>
+							
+						</div>-->
+							<select for="table">
+								<option value="4"selected>4</option>
+								<option value="10">10</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+							</select>
+					</div>
+					<p>Resultado:</p>
+					<div id="div1"></div>
+				</div>
+
+				<div class="content-footer">
+				 <!--<center><label class="btn btn-primary">Resultado:</label></center>-->
+					
+				</div>
+			</div>
+			</section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+        particlesJS.load('particles-js', 'particles.json',
+        function(){
+            console.log('particles.json loaded...')
+        })
+    </script>
+	<script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
+	<!--
+<script>
+$(document).ready(function () {
+
+	$('.star').on('click', function () {
+      $(this).toggleClass('star-checked');
+    });
+
+    $('.ckbox label').on('click', function () {
+      $(this).parents('tr').toggleClass('selected');
+    });
+
+    $('.btn-filter').on('click', function () {
+      var $target = $(this).data('target');
+      if ($target != 'all') {
+        $('.table tr').css('display', 'none');
+        $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+      } else {
+        $('.table tr').css('display', 'none').fadeIn('slow');
+      }
+    });
+
+ });
+</script>-->
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PizzaFast</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $.ajax({
+          url: 'http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/BusinessLogic_Pizza/pizzas', // returns "[1,2,3,4,5,6]"
+          dataType: 'json', // jQuery will parse the response as JSON
+          success: function (outputfromserver) {
+            $.each(outputfromserver, function(index, el) {
+                  //$("#pizzas").append("<td>"+index.ID_pizza+"</td>");
+                  alert("element at " + index + ": " + el.ID_pizza); // will alert each value
+              });
+              }
+          });
+      });
+    /*  var m = data.'0'.ID_pizza;
+              $.get("http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/BusinessLogic_Pizza/pizzas",function(data)
+              {
+                $("#pizzas").append("<td>"+m+"</td>");
+                //$("#pizzas").html(data."0".ID_pizza);
+                //alert("Load was performed.");
+              });*/
+  </script>
+  <script>
+  $(document).ready(function(){
+      $.get("http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/View_pizzeria/webresources/Coupon",function(data) {
+  		  $("#coupon").append("<td>"+data.ID+"</td><td>"+data.Nombre+"</td><td>"+data.Apellido+"</td><td>"+data.Fecha_de_nacimiento+"</td>");
+  		},"json");
+  });
+  </script>
+  <script>
+  $(document).ready(function()
+  {
+        $.get("http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/View_pizzeria/webresources/Pedido/1/1/1",function(data) {
+    		          $("#pedido").append("<td>"+data.Pedido+"</td><td>"+data.pizza+"</td><td>"+data.cantidad+"</td><td>"+data.precio+"</td>");
+    		},"json");
+  });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <p> NullPointer si no es 1 </p>
+    <a href="http://ec2-34-210-29-111.us-west-2.compute.amazonaws.com:8080/BusinessLogic_Pizza/factura/{id_pedido}">http://ec2-34-210-29-111.us-west-2.compute.amazonaws.com:8080/BusinessLogic_Pizza/factura/{id_pedido}</a>
+  <p>Factura</p>
+  <input type="number" id="facturaVal">
+  <button id="facturae">Enviar</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID_PEDIDO</th>
+        <th>ID_PERSONA</th>
+        <th>NOMBRE</th>
+        <th>APELLIDO</th>
+        <th>TOTAL_PEDIDO</th>
+        <th>DESCUENTO</th>
+        <th>ID_PIZZA</th>
+        <th>NOMBREPIZZA</th>
+        <th>CATEGORIA</th>
+        <th>PRECIO</th>
+        <th>CANTIDAD</th>
+      </tr>
+    </thead>
+    <tbody id="facturas">
+    </tbody>
+  </table>
+    <a href="http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/View_pizzeria/webresources/Coupon">http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/View_pizzeria/webresources/Coupon</a>
+  <p>Cupon</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>FechaNacimiento</th>
+      </tr>
+    </thead>
+    <tbody id="coupon">
+    </tbody>
+  </table>
+  <p>Retorna valores como undefined</p>
+  <a href="http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/View_pizzeria/webresources/Pedido/1/1/1">http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/View_pizzeria/webresources/Pedido/1/1/1</a>
+<p>Pedido</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Pedido</th>
+        <th>Pizza</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody id="pedido">
+    </tbody>
+  </table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Pizzas</th>
+        <th>Pizza</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody id="pizzas">
+    </tbody>
+  </table>
+  <p>no vale</p>
+  <a href="http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/Prueba_fecha/webresources/People">http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/Prueba_fecha/webresources/People</a>
+<p></p>
+  <a href="http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/Prueba_fecha/webresources/People/{nombre}/{dd-mm-aaaa}">http://ec2-54-201-234-64.us-west-2.compute.amazonaws.com:8080/Prueba_fecha/webresources/People/{nombre}/{dd-mm-aaaa}</a>
+</div>
+<script>
+$(document).ready(function()
+{
+  $("#facturae").click(function(){
+  /*  $("facturae").click(function()
+    {});*/
+        function setText(x) {
+        document.getElementById('facturaVal').value = x;
+          }
+          getText = function() {
+              return document.getElementById('facturaVal').value;
+          }
+      $.get("http://ec2-34-210-29-111.us-west-2.compute.amazonaws.com:8080/BusinessLogic_Pizza/factura/1",function(data) {
+                $("#facturas").append("<td>"+data.pedido.persona.Nombre+"</td>");
+      },"json");
+    });
+});
+</script>
+<!--
+<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+<button>Get External Content</button>
+-->
+</body>
+</html>

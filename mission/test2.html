@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/basic.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="jquery.searchable.js"></script>
+  <script src="js/basic.js"></script>
+</head>
+<body>
+<div class="container">
+    <h3>Using jQuery plugin allows you to apply paging to standard html table.</h3>
+    The default number of pages is 10 but you can pass a number to the function to have more or less items per page.<br /><br />
+    <h4>To Initialize the table use either of the following:</h4>
+    <pre><code>
+    $('#tableid').page();
+        <strong>OR</strong>
+    $('#tableid').page(15);
+    </code></pre>
+
+    
+</p>
+
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+             <h3>Table Paging</h3>
+            <table id="zipTable" class="table">
+                <tr>
+                    <th>Zipcode</th>
+                    <th>City</th>
+                    <th>State</th>
+                </tr>
+                <tr>
+                    <td>00401</td>
+                    <td>Pleasantville</td>
+                    <td>NY</td>
+                </tr>
+                <tr>
+                    <td>00501</td>
+                    <td>Holtsville</td>
+                    <td>NY</td>
+                </tr>
+                <tr>
+                    <td>00544</td>
+                    <td>Holtsville</td>
+                    <td>NY</td>
+                </tr>
+                <tr>
+                    <td>01001</td>
+                    <td>Agawam</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01002</td>
+                    <td>Amherst</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01003</td>
+                    <td>Amherst</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01005</td>
+                    <td>Barre</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01007</td>
+                    <td>Belchertown</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01008</td>
+                    <td>Blandford</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01009</td>
+                    <td>Bondsville</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01010</td>
+                    <td>Brimfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01011</td>
+                    <td>Chester</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01012</td>
+                    <td>Chesterfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01013</td>
+                    <td>Chicopee</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01020</td>
+                    <td>Chicopee</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01022</td>
+                    <td>Chicopee</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01026</td>
+                    <td>Cummington</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01027</td>
+                    <td>Easthampton</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01028</td>
+                    <td>East Longmeadow</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01029</td>
+                    <td>East Otis</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01030</td>
+                    <td>Feeding Hills</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01031</td>
+                    <td>Gilbertville</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01032</td>
+                    <td>Goshen</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01033</td>
+                    <td>Granby</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01034</td>
+                    <td>Granville</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01035</td>
+                    <td>Hadley</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01036</td>
+                    <td>Hampden</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01037</td>
+                    <td>Hardwick</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01038</td>
+                    <td>Hatfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01039</td>
+                    <td>Haydenville</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01040</td>
+                    <td>Holyoke</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01050</td>
+                    <td>Huntington</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01053</td>
+                    <td>Leeds</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01054</td>
+                    <td>Leverett</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01056</td>
+                    <td>Ludlow</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01057</td>
+                    <td>Monson</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01059</td>
+                    <td>North Amherst</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01060</td>
+                    <td>Northampton</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01063</td>
+                    <td>Northampton</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01066</td>
+                    <td>North Hatfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01068</td>
+                    <td>Oakham</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01069</td>
+                    <td>Palmer</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01070</td>
+                    <td>Plainfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01071</td>
+                    <td>Russell</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01072</td>
+                    <td>Shutesbury</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01073</td>
+                    <td>Southampton</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01074</td>
+                    <td>South Barre</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01075</td>
+                    <td>South Hadley</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01076</td>
+                    <td>South Hadley</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01077</td>
+                    <td>Southwick</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01079</td>
+                    <td>Thorndike</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01080</td>
+                    <td>Three Rivers</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01081</td>
+                    <td>Wales</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01082</td>
+                    <td>Ware</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01083</td>
+                    <td>Warren</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01084</td>
+                    <td>West Chesterfie</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01085</td>
+                    <td>Westfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01088</td>
+                    <td>West Hatfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01089</td>
+                    <td>West Springfiel</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01092</td>
+                    <td>Warren</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01093</td>
+                    <td>Whately</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01094</td>
+                    <td>Wheelwright</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01095</td>
+                    <td>Wilbraham</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01096</td>
+                    <td>Williamsburg</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01097</td>
+                    <td>Woronoco</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01098</td>
+                    <td>Worthington</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01101</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01103</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01104</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01105</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01106</td>
+                    <td>Longmeadow</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01107</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01108</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01109</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01111</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01114</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01115</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01116</td>
+                    <td>EAST LONGMEADOW</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01118</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01119</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01128</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01129</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01133</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01144</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01151</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01152</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01199</td>
+                    <td>Springfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01201</td>
+                    <td>Pittsfield</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01220</td>
+                    <td>Adams</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01222</td>
+                    <td>Ashley Falls</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01223</td>
+                    <td>Becket</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01224</td>
+                    <td>Berkshire</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01225</td>
+                    <td>Cheshire</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01226</td>
+                    <td>Dalton</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01229</td>
+                    <td>Glendale</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01230</td>
+                    <td>Great Barringto</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01235</td>
+                    <td>Hinsdale</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01236</td>
+                    <td>Housatonic</td>
+                    <td>MA</td>
+                </tr>
+                <tr>
+                    <td>01237</td>
+                    <td>Lanesboro</td>
+                    <td>MA</td>
+                </tr>
+            </table>
+            <br />
+            <select for="zipTable">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="30">30</option>
+            </select>
+        </div>
+    </div>
+</div>
+<script>
+//Beginning of plugin
+
+(function ($) {
+    $.fn.page = function (PageSize) {
+        $(this).addClass("page-table")
+        var tableId = $(this).attr("id");
+        
+        //if id is not defined for table. Do Nothing.
+        if (typeof tableId == 'undefined') {
+            return this;
+        };
+
+        //Check for controls for this table and remove
+        $('.pagination[for="' + tableId + '"]').remove();
+
+        //Check for valid variable for pageSize if not set to default of 10
+        if (typeof PageSize == 'number') {
+            PageSize = parseInt(PageSize);
+        } else if (typeof PageSize == 'string') {
+            if ($.isNumeric(PageSize) == true) {
+                PageSize = parseInt(PageSize);
+            } else {
+                PageSize = 10;
+            }
+        } else {
+            PageSize = 10;
+        }
+
+        //Add pagination <ul> to hold controls
+        $(this).after('<ul class="pagination" for="' + tableId + '"></ul>');
+
+        //Add a pager control for each page
+        var currpage = 1;
+        var item = 1;
+        $(this).find('tr:has(td)').each(function () {
+
+            $(this).attr('data-page', currpage);
+
+            if ((item % PageSize) == 0) {
+                currpage = currpage + 1;
+                $('.pagination[for="' + tableId + '"]').append('<li><a href="#" data-page="' + currpage + '" for="' + tableId + '">' + currpage + '</a></li>')
+            } else if (item == 1) {
+                $('.pagination[for="' + tableId + '"]').append('<li><a href="#" class="active" data-page="' + currpage + '" for="' + tableId + '">' + currpage + '</a></li>')
+            }
+            item = item + 1;
+        });
+
+        //load 1st page
+        pageNumber(1, tableId);
+        $(this).next('.pagination[for="' + tableId + '"]').find('a').on('click', function (e) {
+            e.preventDefault();
+            pageNumber($(this).attr('data-page'), this);
+        });
+        return this;
+    }
+
+    // Private function page change
+    function pageNumber(iPage, element) {
+        if (typeof element == 'string') {
+            var target = element;
+        } else {
+            var target = $(element).attr("for");
+        }
+
+
+        if (typeof target == 'undefined') {
+            $('.page-table tr:has(td)').hide();
+            $('.page-table tr[data-page="' + iPage + '"]').show();
+        } else {
+            $('#' + target + ' tr:has(td)').hide();
+            $('#' + target + ' tr[data-page="' + iPage + '"]').show();
+        }
+    };
+
+})(jQuery);
+
+//End of plugin Beginning of Initialization
+
+//if no page size is passed default is 10. Below we are setting page size to 20
+$('#zipTable').page(20);
+
+//Changes page size from select value
+$('select[for="zipTable"]').on('change', function () {
+    $('#zipTable').page($(this).val());
+});
+</script>
+</body>
+</html>

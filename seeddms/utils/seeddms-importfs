@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ -z ${SEEDDMS_HOME+x} ]; then
+	echo "Please set SEEDDMS_HOME before running this script";
+	exit 1;
+fi
+php -f ${SEEDDMS_HOME}/utils/importfs.php -- "$@"

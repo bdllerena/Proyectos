@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+	<title>Ingreso Usuario</title>
+	<meta charset="utf-8">
+	        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<form action="add.php" method="POST" name="form1">
+	<div class="form-group">
+	<label for="first_name">Nombre</label>
+	<input type="text" class="form-control" name="txtNombre">
+	</div>
+
+	<div class="form-group">
+	<label for="last_name">Cedula</label>
+	<input type="text" class="form-control" name="txtCedula" >
+	</div>
+	<div class="form-group">
+	<label for="last_name">Genero</label>
+	<input type="text"  class="form-control" name="txtGenero">
+	</div>
+	<div class="form-group">
+	<label for="last_name">Clave</label>
+	<input type="text"  class="form-control" name="txtClave">
+	</div>
+	<button type="submit" name="Submit" class="btn btn-primary">Agregar</button>
+
+	</form>
+<a href="usuariopanel.php"><button class="btn btn-warning">Regresar</button></a>
+</body>
+</html>

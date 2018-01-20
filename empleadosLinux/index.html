@@ -1,0 +1,72 @@
+<html>
+
+   <head>
+      <title>Servicios Rest Obtenidos</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <link rel="stylesheet" href="style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script>
+      $(document).ready(function()
+      {
+        $.get("http://ec2-54-245-141-110.us-west-2.compute.amazonaws.com/empleados/rest.php/empleados",function(data) {
+          $.each(data, function(index,el) {
+            $("#empleados").append("<tr><td>"+el.id_emp+"</td><td>"+el.id_usu+"</td><td>"+el.nombre_emp+"</td><td>"+el.ruc_emp+"</td>");
+            });
+          },"json");
+      });
+      </script>
+      <script>
+      $(document).ready(function()
+      {
+        $.get("http://ec2-54-245-141-110.us-west-2.compute.amazonaws.com/empleados/rest.php",function(data) {
+          $.each(data, function(index,el) {
+            $("#usuarios").append("<tr><td>"+el.id_usu+"</td><td>"+el.nombre_usu+"</td><td>"+el.cedula_usu+"</td><td>"+el.genero_usu+"</td><td>"+el.clave_usu+"</td></tr>");
+            });
+          },"json");
+      });
+      </script>
+      <script>
+      $(document).ready(function()
+      {
+        $.get("http://ec2-54-245-141-110.us-west-2.compute.amazonaws.com/pizzafast/public/index.php/repartidor",function(data) {
+          $.each(data, function(index,el) {
+            $("#repartidores").append("<tr><td>"+el.id_repartidor+"</td><td>"+el.nickname+"</td><td>"+el.cedula+"</td><td>"+el.sueldo+"</td><td>"+el.empleadoMes+"</td></tr>");
+            });
+          },"json");
+      });
+      </script>
+   </head>
+  <body>
+    <center><h2>Usuarios</h2></center>
+    <center><strong>Se recupero la clave de los usuarios por fines de demostración</strong></center>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <td>id</td>
+      <td>nombre</td>
+      <td>cedula</td>
+      <td>genero</td>
+      <td>clave</td>
+    </tr>
+  </thead>
+  <tbody id="usuarios">
+  </tbody>
+</table>
+<center><h2>Empleados</h2></center>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <td>id empleado</td>
+    <td>id usuario</td>
+    <td>nombre empleado</td>
+    <td>ruc empleado</td>
+  </tr>
+  </thead>
+  <tbody id="empleados">
+  </tbody>
+  </table>
+  </body>
+  </html>

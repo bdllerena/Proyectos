@@ -1,0 +1,59 @@
+<?php
+//including the database connection file
+include_once("include/funciones.php");
+ 
+$funciones = new funciones();
+ 
+//fetching data in descending order (lastest entry first)
+$query = "SELECT * FROM modalidad ORDER BY codigo DESC";
+$result = $funciones->getData($query);
+//echo '<pre>'; print_r($result); exit;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+	   $.get("http://localhost/edades/public/index.php/api/edades", function(data) {		
+	    alert("Retrieved data:" + data);
+	}).fail(function() {
+	  alert("An error has occurred");
+	});
+</script>
+</head>
+<body>
+ <form>
+ <label>Ingreso de datos</label>
+  <p></p>
+ <label>Nombre:</label>
+ <input type="text">
+ <p></p>
+ <label>Edad:</label>
+ <input type="text">
+  <p></p>
+  <p></p>
+ <input type="submit" value="enviar">
+ </form>
+     <table width='80%' border=0 class="table table-dark">
+    <tr bgcolor='#CCCCCC'>
+		<td>id</td>
+        <td>nombre</td>
+		<td>edad</td>
+    </tr>
+    <?php 
+    foreach ($result as $key => $res) {
+    //while($res = mysqli_fetch_array($result)) {         
+        echo "<tr>";
+		echo "<td>".$res['id']."</td>";	
+        echo "<td>".$res['nombre']."</td>";	
+		echo "<td>".$res['edad']."</td>";	
+        }
+    ?>
+    </table>
+</body>
+</html>
